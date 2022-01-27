@@ -11,6 +11,7 @@
 
 TaskHandle_t task1, task2, task3;
 TimerHandle_t motor_timer_handle;
+
 uint32_t count =0;
 
 void Task1(void *pv)
@@ -40,7 +41,7 @@ void TurnMotorOFF(TimerHandle_t xTimer)   // call back function when timer off
 
 void Task3(void *pv)
 {
-   motor_timer_handle = xTimerCreate("MotorOFF", pdMS_TO_TICKS(2000),pdTRUE, NULL, TurnMotorOFF);
+   motor_timer_handle = xTimerCreate("MotorOFF", pdMS_TO_TICKS(2000),pdFALSE, NULL, TurnMotorOFF);
   xTimerStart(motor_timer_handle, 0);  // when you want to interrupt the main task frequently.
   
   while(1)
